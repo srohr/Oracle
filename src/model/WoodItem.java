@@ -34,6 +34,12 @@ public class WoodItem {
 		this.price = price;
 	}
 
+    public WoodItem(String type) {
+        this.type = type;
+        this.baseDeliveryTime = 0.0;
+        this.price = 0.0;
+    }
+
 	/**
 	 * Get the type of Wood
 	 * 
@@ -49,8 +55,27 @@ public class WoodItem {
 	 * @return the baseDeliverytime
 	 */
 	public Double getDaseDeliveryTime() {
-		return baseDeliveryTime;
+        if (type.equals("Cherry"))                   baseDeliveryTime = 2.5;
+        else if (type.equals("Curly Maple"))         baseDeliveryTime = 1.5;
+        else if (type.equals("Genuine Mahogany"))    baseDeliveryTime = 3.0;
+        else if (type.equals("Wenge"))               baseDeliveryTime = 5.0;
+        else if (type.equals("White Oak"))           baseDeliveryTime = 2.3;
+        else if (type.equals("Sawdust"))             baseDeliveryTime = 1.0;
+
+        return baseDeliveryTime;
 	}
+
+    public Double GetDeliveryTime(int count){
+        Double dtime = 0.0;
+
+        double modif = (Integer)((count - 1)/100) + 1;
+        if (modif == 6.0)
+            modif = 5.5;
+
+        dtime = modif * baseDeliveryTime;
+
+        return dtime;
+    }
 
 	/**
 	 * 
@@ -58,7 +83,14 @@ public class WoodItem {
 	 * 
 	 * @return the price for 1 Bare Foot of this WoodItem
 	 */
-	public Double getPrice() {
+	public Double getPricePerUnit() {
+        if (type.equals("Cherry"))                   price = 5.95;
+        else if (type.equals("Curly Maple"))         price = 6.00;
+        else if (type.equals("Genuine Mahogany"))    price = 9.60;
+        else if (type.equals("Wenge"))               price = 22.35;
+        else if (type.equals("White Oak"))           price = 6.70;
+        else if (type.equals("Sawdust"))             price = 1.50;
+
 		return price;
 	}
 
@@ -66,9 +98,9 @@ public class WoodItem {
 	 * @see java.lang.Object#toString()
 	 * You may implement this method to fit your needs
 	 */
-	@Override
+	/*@Override
 	public String toString() {	
 		return "";
-	}
+	}*/
 	
 }
