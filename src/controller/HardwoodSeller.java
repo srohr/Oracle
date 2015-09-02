@@ -6,7 +6,6 @@ package controller;
 import model.WoodItem;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -20,14 +19,18 @@ public class HardwoodSeller {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		if (args.length != 1) {
-            System.out.printf("ERROR! Usage: Hardwood <filepath>\n");
-            System.out.printf("Recieved args: %s\n", Arrays.toString(args));
-        }
-        else{
+        try {
+            String file;
+            System.out.printf("Enter path to input file: ");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            file = br.readLine();
             HardwoodSeller h = new HardwoodSeller();
-            h.readInputFile(args[0]);
+            h.readInputFile(file);
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 	}
 	
 	public void readInputFile(String inputFilePath){
